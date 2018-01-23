@@ -7,20 +7,38 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@mipmap/insta_logo"
+            android:icon="@mipmap/iconinstagram50"
             android:title="Instagram" />
         <item
             android:id="@+id/nav_facebook"
-            android:icon="@mipmap/facebook_logo"
-            android:title="Facebook" />
+            android:icon="@mipmap/iconfacebook50"
+            android:title="Facebook"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_twitter"
+            android:icon="@mipmap/icontwitter50"
+            android:title="Twitter"
+            app:showAsAction="always" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@mipmap/youtube_logo"
+            android:icon="@mipmap/iconyoutube50"
             android:title="Youtube" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Konto Einstellungen" />
+            android:icon="@mipmap/iconebay50"
+            android:title="Ebay Kleinanzeigen" />
+        <item
+            android:id="@+id/nav_aliexpress"
+            android:icon="@mipmap/iconaliexpress"
+            android:title="Aliexpress" />
+        <item
+            android:id="@+id/nav_sparkasse"
+            android:icon="@mipmap/iconsparkasse"
+            android:title="Sparkasse" />
+        <item
+            android:id="@+id/nav_lieferando"
+            android:icon="@mipmap/icondelivery50"
+            android:title="Lieferando" />
     </group>
 
     <item android:title="Communicate">
