@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1530c8</color>
+    <color name="colorPrimaryDark">#2a3e72</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="exapp_background">#abe1ff</color>
+    <color name="transparent_blue">#98163072</color>
+</resources>
