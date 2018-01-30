@@ -96,11 +96,11 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (ChatMenu_ScrollView.getVisibility() == View.VISIBLE) {
                     ChatMenu_ScrollView.setVisibility(View.GONE);
-                    ChatMenu_showButton.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float));
+                    ChatMenu_showButton.setBackgroundDrawable(getResources().getDrawable(R.mipmap.icondropdown_up));
 
                 } else {
                     ChatMenu_ScrollView.setVisibility(View.VISIBLE);
-                    ChatMenu_showButton.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float));
+                    ChatMenu_showButton.setBackgroundDrawable(getResources().getDrawable(R.mipmap.icondropdown_down));
                 }
             }
         });

@@ -11,22 +11,22 @@
 
     <Button
         android:id="@+id/chatMenu_moneyButton"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="right"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@android:drawable/arrow_up_float"
+        android:layout_marginEnd="15dp"
+        android:background="@mipmap/icondropdown_down"
+        android:elevation="24dp"
         android:fontFamily="serif"
-        android:text="€"
-        android:textSize="14sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="15dp" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -240,12 +240,10 @@
 
                 <EditText
                     android:id="@+id/ChatMessage_EditText"
-                    style="@style/Base.Widget.AppCompat.AutoCompleteTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:layout_weight="1"
-                    android:background="@android:drawable/editbox_background"
                     android:ems="10"
                     android:hint="@string/write"
                     android:inputType="text|textMultiLine|textImeMultiLine|textLongMessage|textWebEditText"
