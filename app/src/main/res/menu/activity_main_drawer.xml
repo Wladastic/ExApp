@@ -6,7 +6,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_instagram"
             android:icon="@mipmap/iconinstagram50"
             android:title="Instagram" />
         <item
@@ -20,11 +20,11 @@
             android:title="Twitter"
             app:showAsAction="always" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_Youtube"
             android:icon="@mipmap/iconyoutube50"
             android:title="Youtube" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_ebay_Kleinanzeigen"
             android:icon="@mipmap/iconebay50"
             android:title="Ebay Kleinanzeigen" />
         <item

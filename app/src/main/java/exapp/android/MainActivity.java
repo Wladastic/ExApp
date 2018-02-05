@@ -3,9 +3,7 @@ package exapp.android;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -28,14 +25,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Method;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     View include_main;
-    View include_facebook;
+    View include_webView;
 
     Button ChatMenu_showButton;
     HorizontalScrollView ChatMenu_ScrollView;
@@ -45,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     EditText ChatMessage_EditText;
 
     Button ChatMessage_SendButton;
+    WebView webview;
 
     LinearLayout.LayoutParams _TextLayout_params;
     LinearLayout.LayoutParams _LinearLayout_params_received;
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         include_main = findViewById(R.id.include_main);
-        include_facebook = findViewById(R.id.include_fb);
+        include_webView = findViewById(R.id.include_fb);
 
         ChatMenu_showButton = (Button) findViewById(R.id.chatMenu_moneyButton);
         ChatMenu_ScrollView = (HorizontalScrollView) findViewById(R.id.chatMenu_ScrollView);
@@ -149,7 +145,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void load_webView() {
+    private void load_webView(String _url) {
         WebView webview = (WebView) findViewById(R.id.fb_webview);
         webview.setWebChromeClient(new WebChromeClient());
         webview.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -157,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         webview.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         //webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("https://m.facebook.com/");
+        webview.loadUrl(_url);
     }
 
     @Override
@@ -193,28 +189,39 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    private void loadActivity(String _url, String _title) {
+        load_webView(_url);
+        setTitle(_title);
+        include_webView.setVisibility(View.VISIBLE);
+        include_main.setVisibility(View.GONE);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_instagram) {
             // Handle the camera action
         } else if (id == R.id.nav_facebook) {
-            load_webView();
-            include_facebook.setVisibility(View.VISIBLE);
-            include_main.setVisibility(View.GONE);
-            setTitle("Facebook");
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+            loadActivity("https://m.facebook.com/", "Facebook");
+        } else if (id == R.id.nav_Youtube) {
+            loadActivity("https://m.youtube.com/", "Youtube");
+        } else if (id == R.id.nav_ebay_Kleinanzeigen) {
+            loadActivity("https://m.ebay-kleinanzeigen.de/", "Ebay Kleinanzeigen");
+        } else if (id == R.id.nav_twitter) {
+            loadActivity("https://mobile.twitter.com/", "Twitter");
+        } else if (id == R.id.nav_aliexpress) {
+            loadActivity("https://m.aliexpress.com/", "Aliexpress");
+        } else if (id == R.id.nav_lieferando) {
+            loadActivity("https://www.lieferando.de/", "Lieferando");
+        } else if (id == R.id.nav_sparkasse) {
+            loadActivity("https://www.sparkasse.de/", "Sparkasse");
         } else if (id == R.id.nav_share) {
-
+            loadActivity("https://m.facebook.com/ExApp-Messenger-770498696462926/", "share Exapp");
         } else if (id == R.id.nav_send) {
-            include_facebook.setVisibility(View.GONE);
+            include_webView.setVisibility(View.GONE);
             include_main.setVisibility(View.VISIBLE);
             setTitle("~: Exapp Bot");
         }
