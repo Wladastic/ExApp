@@ -5,4 +5,7 @@
     <color name="colorAccent">#032aff</color>
     <color name="exapp_background">#abe1ff</color>
     <color name="transparent_blue">#98163072</color>
+    <color name="message_sent">@android:color/holo_blue_bright</color>
+    <color name="message_received">@color/colorPrimary</color>
+    <color name="message_received_text">@android:color/white</color>
 </resources>

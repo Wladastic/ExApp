@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,13 @@ public class MainActivity extends AppCompatActivity
     LinearLayout.LayoutParams _LinearLayout_params_sent;
     CardView.LayoutParams _CardView_Entry_params;
 
+    ImageView paypal_chatmenu_Button;
+
+    float scale;
+    int cardradius ;
+    int contentpadding ;
+    int message_margin ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +64,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        scale = getResources().getDisplayMetrics().density;
+        cardradius = (int) (10 * scale + 0.5f);
+        contentpadding = (int) (5 * scale + 0.5f);
+        message_margin = (int) (5 * scale + 0.5f);
+
         include_main = findViewById(R.id.include_main);
         include_webView = findViewById(R.id.include_fb);
 
         ChatMenu_showButton = (Button) findViewById(R.id.chatMenu_moneyButton);
         ChatMenu_ScrollView = (HorizontalScrollView) findViewById(R.id.chatMenu_ScrollView);
+        ChatMenu_ScrollView.setVisibility(View.GONE);
 
         ChatMessage_EditText = (EditText) findViewById(R.id.ChatMessage_EditText);
         ChatMessage_SendButton = (Button) findViewById(R.id.ChatMessage_SendButton);
@@ -74,16 +88,26 @@ public class MainActivity extends AppCompatActivity
         _CardView_Entry_params.setMargins(10, 0, 10, 20);
 
         _LinearLayout_params_sent = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0);
-        _LinearLayout_params_sent.setMargins(10, 10, 10, 10);
+        _LinearLayout_params_sent.setMargins(message_margin, message_margin, message_margin, message_margin);
         _LinearLayout_params_sent.gravity = Gravity.END;
         _LinearLayout_params_received = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0);
-        _LinearLayout_params_received.setMargins(10, 10, 10, 10);
+        _LinearLayout_params_received.setMargins(message_margin, message_margin, message_margin, message_margin);
         _LinearLayout_params_received.gravity = Gravity.START;
+
+        paypal_chatmenu_Button = (ImageView) findViewById(R.id.paypal_chatmenu_Button);
+
+        paypal_chatmenu_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Chat_addMessage(ChatMessage_EditText.getText().toString(), false);
+            }
+        });
 
         ChatMessage_SendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Chat_addMessage(ChatMessage_EditText.getText().toString(), true);
+                ChatMessage_EditText.setText("");
             }
         });
 
@@ -128,16 +152,15 @@ public class MainActivity extends AppCompatActivity
 
         if (sent) {
             newMessageCardView.setLayoutParams(_LinearLayout_params_sent);
+            newMessageCardView.setCardBackgroundColor(getResources().getColor(R.color.message_sent));
         } else {
             newMessageCardView.setLayoutParams(_LinearLayout_params_received);
+            newMessageCardView.setCardBackgroundColor(getResources().getColor(R.color.message_received));
+            newMessageTextView.setTextColor(getResources().getColor(R.color.message_received_text));
         }
 
-        final float scale = getResources().getDisplayMetrics().density;
-        int cardradius = (int) (10 * scale + 0.5f);
-
         newMessageCardView.setRadius(cardradius);
-        newMessageCardView.setCardBackgroundColor(getResources().getColor(R.color.transparent_blue));
-
+        newMessageCardView.setContentPadding(contentpadding, contentpadding, contentpadding, contentpadding);
         newMessageTextView.setText(msg);
 
         newMessageCardView.addView(newMessageTextView);
@@ -203,7 +226,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_instagram) {
-            // Handle the camera action
+            loadActivity("https://www.instagram.com/", "Instagram");
         } else if (id == R.id.nav_facebook) {
             loadActivity("https://m.facebook.com/", "Facebook");
         } else if (id == R.id.nav_Youtube) {
