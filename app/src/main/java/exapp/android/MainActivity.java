@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        get_new_Messages("Wlad");
+
         scale = getResources().getDisplayMetrics().density;
         cardradius = (int) (10 * scale + 0.5f);
         contentpadding = (int) (5 * scale + 0.5f);
@@ -142,6 +144,28 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public boolean authenticate(){
+        return true;
+    }
+
+    public String[] get_new_Messages(String contact_id){
+        return new String[]{"hey du", "wie geht's dir?"};
+    }
+
+    public void request_messages(String contact_id) {
+        if (authenticate()){
+
+            String[] new_Messages = get_new_Messages(contact_id);
+            if (new_Messages.length > 0) {
+                for (String message : new_Messages){
+                    Chat_addMessage(message, false);
+                }
+            }
+
+            //
+        }
     }
 
     private void Chat_addMessage(String msg, Boolean sent) {
